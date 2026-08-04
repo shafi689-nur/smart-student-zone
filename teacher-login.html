@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Teacher Login</title>
+</head>
+<body>
+
+<h2>👨‍🏫 Teacher Login</h2>
+
+<input id="email" placeholder="Email">
+<input id="pass" type="password" placeholder="Password">
+
+<button onclick="teacherLogin()">Login</button>
+
+<script>
+
+function teacherLogin(){
+
+ let teacher=
+ JSON.parse(localStorage.getItem("teacher"));
+
+ let email=
+ document.getElementById("email").value;
+
+ let pass=
+ document.getElementById("pass").value;
+
+ if(
+ teacher &&
+ teacher.email===email &&
+ teacher.pass===pass
+ ){
+
+   localStorage.setItem(
+   "teacherLogin",
+   "true"
+   );
+
+   window.location.href=
+   "teacher-portal.html";
+
+ }else{
+
+   alert("Invalid Login");
+
+ }
+
+}
+
+</script>
+
+</body>
+</html>

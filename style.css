@@ -1,0 +1,146 @@
+body{
+  margin:0;
+  font-family:Arial;
+}
+
+/* BACKGROUND */
+.bg{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg, #f9ca24, #6ab04c);
+}
+
+/* CARD */
+.box{
+  width:340px;
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* LOGO */
+.logo{
+  width:80px;
+  height:80px;
+  object-fit:contain;
+  margin-bottom:10px;
+}
+
+/* INPUT */
+input{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border:1px solid #ccc;
+  border-radius:6px;
+}
+
+/* BUTTON */
+button{
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.login-btn{ background:#f9ca24; }
+.login-btn:hover{ background:#f1c40f; }
+
+.signup-btn{ background:#6ab04c; color:white; }
+.signup-btn:hover{ background:#4caf50; }
+
+/* DASHBOARD */
+.sidebar{
+  width:220px;
+  height:100vh;
+  background:#2d3436;
+  color:white;
+  padding:15px;
+  position:fixed;
+}
+
+.main{
+  margin-left:220px;
+  padding:20px;
+}
+
+.sidebar button{
+  width:100%;
+  padding:10px;
+  margin:5px 0;
+  border:none;
+  cursor:pointer;
+  background:#444;
+  color:white;
+}
+
+.sidebar button:hover{
+  background:#0984e3;
+}
+/* CARD DESIGN */
+.card{
+  background:white;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card input{
+  width:100%;
+  margin:5px 0;
+  padding:10px;
+}
+
+.card button{
+  background:#0984e3;
+  color:white;
+  padding:10px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.card button:hover{
+  background:#0652dd;
+}
+ul{
+  padding-left:20px;
+}
+
+li{
+  background:#f1f2f6;
+  margin:5px 0;
+  padding:8px;
+  border-radius:6px;
+}
+li span{
+  display:block;
+  margin-top:5px;
+  font-size:14px;
+}
+
+.badge{
+  padding:3px 8px;
+  border-radius:5px;
+  font-size:12px;
+  color:white;
+}
+
+.late{ background:red; }
+.ok{ background:green; }
+.profile-img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  margin:10px auto;
+  border:3px solid #0984e3;
+}

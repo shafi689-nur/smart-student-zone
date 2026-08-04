@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hall & Transport Management</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+h1,h2{
+    color:#2d3436;
+}
+
+input,select{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    background:#0984e3;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0767b1;
+}
+
+.success{
+    color:green;
+    font-weight:bold;
+    margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🏠 Hall & Transport Management</h1>
+
+    <!-- Hall Registration -->
+    <div class="card">
+        <h2>🏠 Hall Registration</h2>
+
+        <input type="text" id="hallName" placeholder="Student Name">
+
+        <input type="text" id="hallId" placeholder="Student ID">
+
+        <select id="hallType">
+            <option>Select Hall</option>
+            <option>Male Hall</option>
+            <option>Female Hall</option>
+        </select>
+
+        <input type="text" id="roomNo" placeholder="Preferred Room Number">
+
+        <button onclick="registerHall()">
+            Register Hall
+        </button>
+
+        <p id="hallMsg" class="success"></p>
+    </div>
+
+    <!-- Transport Registration -->
+    <div class="card">
+        <h2>🚌 Transport Registration</h2>
+
+        <input type="text" id="transportName" placeholder="Student Name">
+
+        <input type="text" id="transportId" placeholder="Student ID">
+
+        <select id="route">
+            <option>Select Route</option>
+            <option>Dhaka Route</option>
+            <option>Gazipur Route</option>
+            <option>Uttara Route</option>
+            <option>Mirpur Route</option>
+        </select>
+
+        <button onclick="registerTransport()">
+            Register Transport
+        </button>
+
+        <p id="transportMsg" class="success"></p>
+    </div>
+
+    <!-- Payment -->
+    <div class="card">
+        <h2>💳 Payment</h2>
+
+        <input type="text" id="payName" placeholder="Student Name">
+
+        <input type="number" id="amount" placeholder="Amount">
+
+        <select id="paymentMethod">
+            <option>Select Payment Method</option>
+            <option>bKash</option>
+            <option>Nagad</option>
+            <option>Rocket</option>
+            <option>Bank Transfer</option>
+        </select>
+
+        <button onclick="makePayment()">
+            Pay Now
+        </button>
+
+        <p id="paymentMsg" class="success"></p>
+    </div>
+
+</div>
+
+<script>
+
+function registerHall(){
+
+    document.getElementById("hallMsg").innerHTML =
+    "✅ Hall Registration Successful";
+}
+
+function registerTransport(){
+
+    document.getElementById("transportMsg").innerHTML =
+    "✅ Transport Registration Successful";
+}
+
+function makePayment(){
+
+    let amount =
+    document.getElementById("amount").value;
+
+    document.getElementById("paymentMsg").innerHTML =
+    "✅ Payment Successful. Amount: ৳" + amount;
+}
+
+</script>
+
+</body>
+</html>

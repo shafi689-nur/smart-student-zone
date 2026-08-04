@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Teacher Registration</title>
+<style>
+body{
+    font-family:Arial;
+    background:#f5f6fa;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.box{
+    width:400px;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 15px rgba(0,0,0,.1);
+}
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+}
+button{
+    width:100%;
+    padding:12px;
+    background:#0984e3;
+    color:white;
+    border:none;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+
+<h2>👨‍🏫 Teacher Registration</h2>
+
+<input id="t_name" placeholder="Teacher Name">
+<input id="t_id" placeholder="Teacher ID">
+<input id="t_dept" placeholder="Department">
+<input id="t_email" placeholder="Email">
+<input id="t_pass" type="password" placeholder="Password">
+
+<button onclick="registerTeacher()">
+Register Teacher
+</button>
+
+</div>
+
+<script>
+
+function registerTeacher(){
+
+ let teacher={
+   name:document.getElementById("t_name").value,
+   id:document.getElementById("t_id").value,
+   dept:document.getElementById("t_dept").value,
+   email:document.getElementById("t_email").value,
+   pass:document.getElementById("t_pass").value
+ };
+
+ localStorage.setItem("teacher",JSON.stringify(teacher));
+
+ alert("Teacher Registration Successful");
+
+ window.location.href="teacher-login.html";
+}
+
+</script>
+
+</body>
+</html>

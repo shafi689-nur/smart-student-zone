@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Teacher Portal</title>
+
+<style>
+body{
+ margin:0;
+ font-family:Arial;
+ display:flex;
+}
+
+.sidebar{
+ width:250px;
+ background:#2d3436;
+ color:white;
+ height:100vh;
+ padding:20px;
+}
+
+.sidebar button{
+ width:100%;
+ padding:10px;
+ margin:5px 0;
+ border:none;
+ background:#353b48;
+ color:white;
+}
+
+.main{
+ flex:1;
+ padding:20px;
+}
+
+.card{
+ background:white;
+ padding:20px;
+ border-radius:10px;
+ box-shadow:0 0 10px rgba(0,0,0,.1);
+ margin-bottom:20px;
+}
+</style>
+
+</head>
+<body>
+
+<script>
+
+if(
+ localStorage.getItem("teacherLogin")
+ !=="true"
+){
+ location.href="teacher-login.html";
+}
+
+</script>
+
+<div class="sidebar">
+
+<h2>Teacher Portal</h2>
+
+<button>Dashboard</button>
+
+<button>Student Result</button>
+
+<button>Attendance</button>
+
+<button>Assignments</button>
+
+<button onclick="logout()">
+Logout
+</button>
+
+</div>
+
+<div class="main">
+
+<div class="card">
+
+<h1>👨‍🏫 Teacher Dashboard</h1>
+
+<p>
+Welcome to Teacher Portal
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🎯 Add Student Marks</h2>
+
+<input id="studentId"
+placeholder="Student ID">
+
+<input id="marks"
+placeholder="Marks">
+
+<button onclick="saveMarks()">
+Save Marks
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function saveMarks(){
+
+ let id=
+ document.getElementById("studentId").value;
+
+ let marks=
+ document.getElementById("marks").value;
+
+ localStorage.setItem(
+ "marks_"+id,
+ marks
+ );
+
+ alert("Marks Saved");
+}
+
+function logout(){
+
+ localStorage.removeItem(
+ "teacherLogin"
+ );
+
+ location.href=
+ "teacher-login.html";
+}
+
+</script>
+
+</body>
+</html>
