@@ -1,53 +1,393 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>Teacher Login</title>
-</head>
-<body>
 
-<h2>👨‍🏫 Teacher Login</h2>
+<meta charset="UTF-8">
 
-<input id="email" placeholder="Email">
-<input id="pass" type="password" placeholder="Password">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<button onclick="teacherLogin()">Login</button>
+<title>Teacher Login - Smart Student Zone</title>
 
-<script>
+<style>
 
-function teacherLogin(){
+*{
+    box-sizing:border-box;
+}
 
- let teacher=
- JSON.parse(localStorage.getItem("teacher"));
+body{
+    margin:0;
+    min-height:100vh;
 
- let email=
- document.getElementById("email").value;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
- let pass=
- document.getElementById("pass").value;
+    font-family:Arial, sans-serif;
 
- if(
- teacher &&
- teacher.email===email &&
- teacher.pass===pass
- ){
+    background:
+    linear-gradient(135deg,#2563eb,#7c3aed);
+}
 
-   localStorage.setItem(
-   "teacherLogin",
-   "true"
-   );
+.login-box{
 
-   window.location.href=
-   "teacher-portal.html";
+    width:380px;
 
- }else{
+    background:white;
 
-   alert("Invalid Login");
+    padding:35px;
 
- }
+    border-radius:15px;
+
+    box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.25);
 
 }
 
+.logo{
+
+    text-align:center;
+
+    font-size:55px;
+
+    margin-bottom:5px;
+
+}
+
+h2{
+
+    text-align:center;
+
+    color:#1e293b;
+
+    margin-bottom:5px;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:#64748b;
+
+    font-size:14px;
+
+    margin-bottom:25px;
+
+}
+
+label{
+
+    display:block;
+
+    margin-top:15px;
+
+    margin-bottom:6px;
+
+    font-weight:bold;
+
+    color:#334155;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:12px;
+
+    border:
+    1px solid #cbd5e1;
+
+    border-radius:7px;
+
+    outline:none;
+
+    font-size:14px;
+
+}
+
+input:focus{
+
+    border-color:#2563eb;
+
+}
+
+button{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:7px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    background:#1d4ed8;
+
+}
+
+.demo{
+
+    margin-top:20px;
+
+    padding:12px;
+
+    background:#eff6ff;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    color:#1e40af;
+
+}
+
+.error{
+
+    color:#dc2626;
+
+    text-align:center;
+
+    margin-top:15px;
+
+    font-size:14px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-box">
+
+
+<div class="logo">
+    👨‍🏫
+</div>
+
+
+<h2>
+    Teacher Login
+</h2>
+
+
+<p class="subtitle">
+    Smart Student Zone
+</p>
+
+
+<label>
+    Email
+</label>
+
+<input
+    type="email"
+    id="email"
+    placeholder="Enter teacher email"
+>
+
+
+<label>
+    Password
+</label>
+
+<input
+    type="password"
+    id="pass"
+    placeholder="Enter password"
+>
+
+
+<button onclick="teacherLogin()">
+
+    🔐 Login
+
+</button>
+
+
+<p
+    id="error"
+    class="error">
+</p>
+
+
+<div class="demo">
+
+<strong>
+    Demo Login
+</strong>
+
+<br><br>
+
+Email:
+<strong>
+teacher@gmail.com
+</strong>
+
+<br>
+
+Password:
+<strong>
+123456
+</strong>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+/* ==========================================
+   CREATE DEMO TEACHER
+========================================== */
+
+function createTeacher(){
+
+    let teacher =
+        localStorage.getItem(
+            "teacher"
+        );
+
+
+    if(!teacher){
+
+        const demoTeacher = {
+
+            name:
+                "Dr. Teacher",
+
+            email:
+                "teacher@gmail.com",
+
+            pass:
+                "123456"
+
+        };
+
+
+        localStorage.setItem(
+
+            "teacher",
+
+            JSON.stringify(
+                demoTeacher
+            )
+
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   LOGIN
+========================================== */
+
+function teacherLogin(){
+
+    let teacher =
+        JSON.parse(
+
+            localStorage.getItem(
+                "teacher"
+            )
+
+        );
+
+
+    let email =
+        document
+        .getElementById(
+            "email"
+        )
+        .value
+        .trim();
+
+
+    let pass =
+        document
+        .getElementById(
+            "pass"
+        )
+        .value;
+
+
+    let error =
+        document
+        .getElementById(
+            "error"
+        );
+
+
+    if(
+
+        teacher &&
+
+        teacher.email === email &&
+
+        teacher.pass === pass
+
+    ){
+
+        localStorage.setItem(
+
+            "teacherLogin",
+
+            "true"
+
+        );
+
+
+        window.location.href =
+            "teacher-portal.html";
+
+
+    }else{
+
+        error.innerHTML =
+            "❌ Invalid Email or Password";
+
+    }
+
+}
+
+
+/* ==========================================
+   INITIALIZE
+========================================== */
+
+createTeacher();
+
 </script>
 
+
 </body>
+
 </html>
