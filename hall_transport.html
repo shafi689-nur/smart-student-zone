@@ -1,164 +1,2917 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hall & Transport Management</title>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Smart Student Zone - Hall & Transport</title>
 
 <style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f4f6f9;
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+    background:#f4f6f9;
+
+    color:#2d3436;
+
     padding:20px;
+
 }
 
 .container{
-    max-width:900px;
+
+    max-width:1100px;
+
     margin:auto;
+
 }
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+    background:
+    linear-gradient(
+        135deg,
+        #0984e3,
+        #0652dd
+    );
+
+    color:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 5px 20px
+    rgba(0,0,0,.15);
+
+}
+
+.header h1{
+
+    font-size:30px;
+
+    margin-bottom:8px;
+
+}
+
+.header p{
+
+    opacity:.9;
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+}
+
+.stat{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    box-shadow:
+    0 2px 10px
+    rgba(0,0,0,.08);
+
+}
+
+.stat h3{
+
+    color:#636e72;
+
+    font-size:14px;
+
+    margin-bottom:8px;
+
+}
+
+.stat strong{
+
+    font-size:28px;
+
+    color:#0984e3;
+
+}
+
+
+/* =========================
+   CARD
+========================= */
 
 .card{
+
     background:white;
-    padding:20px;
-    margin-bottom:20px;
-    border-radius:10px;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    border-radius:12px;
+
+    box-shadow:
+    0 2px 10px
+    rgba(0,0,0,.08);
+
 }
 
-h1,h2{
+.card h2{
+
     color:#2d3436;
+
+    margin-bottom:20px;
+
+    border-bottom:
+    2px solid #0984e3;
+
+    padding-bottom:10px;
+
 }
 
-input,select{
-    width:100%;
-    padding:10px;
-    margin:8px 0;
-    border:1px solid #ccc;
-    border-radius:5px;
+
+/* =========================
+   FORM
+========================= */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:15px;
+
 }
+
+.form-group{
+
+    width:100%;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    font-weight:bold;
+
+    font-size:14px;
+
+    margin-bottom:6px;
+
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:5px;
+
+    border:
+    1px solid #dfe6e9;
+
+    border-radius:7px;
+
+    font-size:14px;
+
+    outline:none;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:#0984e3;
+
+    box-shadow:
+    0 0 0 2px
+    rgba(9,132,227,.1);
+
+}
+
+textarea{
+
+    resize:vertical;
+
+}
+
+.full{
+
+    grid-column:
+    1 / -1;
+
+}
+
+
+/* =========================
+   BUTTON
+========================= */
 
 button{
+
     background:#0984e3;
+
     color:white;
+
     border:none;
+
     padding:12px 20px;
-    border-radius:5px;
+
+    border-radius:7px;
+
     cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.3s;
+
 }
 
 button:hover{
+
     background:#0767b1;
+
+    transform:
+    translateY(-1px);
+
 }
 
-.success{
-    color:green;
-    font-weight:bold;
-    margin-top:10px;
+.success-btn{
+
+    background:#00b894;
+
 }
+
+.success-btn:hover{
+
+    background:#009f7f;
+
+}
+
+.warning-btn{
+
+    background:#fdcb6e;
+
+    color:#2d3436;
+
+}
+
+
+/* =========================
+   HALL CARDS
+========================= */
+
+.hall-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+}
+
+.hall-card{
+
+    border:
+    1px solid #dfe6e9;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+}
+
+.hall-card:hover{
+
+    transform:
+    translateY(-4px);
+
+    box-shadow:
+    0 8px 20px
+    rgba(0,0,0,.1);
+
+}
+
+.hall-top{
+
+    background:
+    linear-gradient(
+        135deg,
+        #0984e3,
+        #0652dd
+    );
+
+    color:white;
+
+    padding:18px;
+
+}
+
+.hall-top h3{
+
+    margin-bottom:5px;
+
+}
+
+.hall-body{
+
+    padding:18px;
+
+}
+
+.hall-info{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:10px;
+
+    margin-bottom:15px;
+
+}
+
+.info{
+
+    background:#f5f6fa;
+
+    padding:10px;
+
+    border-radius:7px;
+
+}
+
+.info small{
+
+    display:block;
+
+    color:#636e72;
+
+    font-size:11px;
+
+}
+
+.info strong{
+
+    display:block;
+
+    margin-top:3px;
+
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-container{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th,
+td{
+
+    padding:12px;
+
+    text-align:left;
+
+    border-bottom:
+    1px solid #eee;
+
+    font-size:14px;
+
+}
+
+th{
+
+    background:#f5f6fa;
+
+}
+
+.badge{
+
+    padding:
+    5px 10px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+}
+
+.available{
+
+    background:#dff9e8;
+
+    color:#008a4b;
+
+}
+
+.occupied{
+
+    background:#ffe2e2;
+
+    color:#d63031;
+
+}
+
+.pending{
+
+    background:#fff3cd;
+
+    color:#856404;
+
+}
+
+.paid{
+
+    background:#dff9e8;
+
+    color:#008a4b;
+
+}
+
+
+/* =========================
+   RESULT
+========================= */
+
+.message{
+
+    margin-top:15px;
+
+    padding:12px;
+
+    border-radius:7px;
+
+    display:none;
+
+    font-weight:bold;
+
+}
+
+.success-message{
+
+    background:#dff9e8;
+
+    color:#008a4b;
+
+}
+
+.error-message{
+
+    background:#ffe2e2;
+
+    color:#d63031;
+
+}
+
+
+/* =========================
+   APPLICATION
+========================= */
+
+.application-box{
+
+    background:#f8f9fa;
+
+    padding:18px;
+
+    border-radius:10px;
+
+}
+
+.application-row{
+
+    display:flex;
+
+    justify-content:
+    space-between;
+
+    gap:15px;
+
+    padding:10px 0;
+
+    border-bottom:
+    1px solid #e9ecef;
+
+}
+
+.application-row:last-child{
+
+    border-bottom:none;
+
+}
+
+
+/* =========================
+   PAYMENT
+========================= */
+
+.payment-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:20px;
+
+}
+
+.payment-box{
+
+    border:
+    1px solid #dfe6e9;
+
+    padding:20px;
+
+    border-radius:10px;
+
+}
+
+.amount{
+
+    font-size:32px;
+
+    color:#0984e3;
+
+    font-weight:bold;
+
+    margin:15px 0;
+
+}
+
+
+/* =========================
+   NOTIFICATION
+========================= */
+
+.notification{
+
+    position:fixed;
+
+    right:20px;
+
+    bottom:20px;
+
+    background:#2d3436;
+
+    color:white;
+
+    padding:15px 20px;
+
+    border-radius:8px;
+
+    display:none;
+
+    z-index:9999;
+
+    box-shadow:
+    0 5px 20px
+    rgba(0,0,0,.2);
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    text-align:center;
+
+    color:#636e72;
+
+    padding:20px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+    .dashboard{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+    .hall-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:650px){
+
+    body{
+
+        padding:10px;
+
+    }
+
+    .header{
+
+        padding:20px;
+
+    }
+
+    .header h1{
+
+        font-size:23px;
+
+    }
+
+    .dashboard{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .full{
+
+        grid-column:auto;
+
+    }
+
+    .hall-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .payment-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .card{
+
+        padding:17px;
+
+    }
+
+    .application-row{
+
+        flex-direction:
+        column;
+
+        gap:4px;
+
+    }
+
+}
+
 </style>
+
 </head>
+
+
 <body>
+
 
 <div class="container">
 
-    <h1>🏠 Hall & Transport Management</h1>
 
-    <!-- Hall Registration -->
-    <div class="card">
-        <h2>🏠 Hall Registration</h2>
+<!-- =========================
+     HEADER
+========================= -->
 
-        <input type="text" id="hallName" placeholder="Student Name">
+<div class="header">
 
-        <input type="text" id="hallId" placeholder="Student ID">
+    <h1>
+        🏠 Smart Student Zone
+    </h1>
 
-        <select id="hallType">
-            <option>Select Hall</option>
-            <option>Male Hall</option>
-            <option>Female Hall</option>
-        </select>
+    <p>
+        Hall & Transport Management System
+    </p>
 
-        <input type="text" id="roomNo" placeholder="Preferred Room Number">
+</div>
 
-        <button onclick="registerHall()">
-            Register Hall
-        </button>
 
-        <p id="hallMsg" class="success"></p>
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<div class="dashboard">
+
+    <div class="stat">
+
+        <h3>
+            Total Halls
+        </h3>
+
+        <strong>
+            6
+        </strong>
+
     </div>
 
-    <!-- Transport Registration -->
-    <div class="card">
-        <h2>🚌 Transport Registration</h2>
 
-        <input type="text" id="transportName" placeholder="Student Name">
+    <div class="stat">
 
-        <input type="text" id="transportId" placeholder="Student ID">
+        <h3>
+            Available Rooms
+        </h3>
 
-        <select id="route">
-            <option>Select Route</option>
-            <option>Dhaka Route</option>
-            <option>Gazipur Route</option>
-            <option>Uttara Route</option>
-            <option>Mirpur Route</option>
-        </select>
+        <strong>
+            184
+        </strong>
 
-        <button onclick="registerTransport()">
-            Register Transport
-        </button>
-
-        <p id="transportMsg" class="success"></p>
     </div>
 
-    <!-- Payment -->
-    <div class="card">
-        <h2>💳 Payment</h2>
 
-        <input type="text" id="payName" placeholder="Student Name">
+    <div class="stat">
 
-        <input type="number" id="amount" placeholder="Amount">
+        <h3>
+            Transport Routes
+        </h3>
 
-        <select id="paymentMethod">
-            <option>Select Payment Method</option>
-            <option>bKash</option>
-            <option>Nagad</option>
-            <option>Rocket</option>
-            <option>Bank Transfer</option>
-        </select>
+        <strong>
+            4
+        </strong>
 
-        <button onclick="makePayment()">
-            Pay Now
-        </button>
+    </div>
 
-        <p id="paymentMsg" class="success"></p>
+
+    <div class="stat">
+
+        <h3>
+            Application
+        </h3>
+
+        <strong id="dashboardStatus">
+            None
+        </strong>
+
     </div>
 
 </div>
 
+
+<!-- =========================
+     HALL LIST
+========================= -->
+
+<div class="card">
+
+<h2>
+    🏢 Available Halls
+</h2>
+
+
+<div class="hall-grid">
+
+
+<!-- HALL 1 -->
+
+<div class="hall-card">
+
+    <div class="hall-top">
+
+        <h3>
+            Abdul Hamid Hall
+        </h3>
+
+        <p>
+            Male Students
+        </p>
+
+    </div>
+
+    <div class="hall-body">
+
+        <div class="hall-info">
+
+            <div class="info">
+
+                <small>
+                    Rooms
+                </small>
+
+                <strong>
+                    120
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Available Seats
+                </small>
+
+                <strong>
+                    42
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Monthly Fee
+                </small>
+
+                <strong>
+                    ৳2,500
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Location
+                </small>
+
+                <strong>
+                    Campus North
+                </strong>
+
+            </div>
+
+        </div>
+
+        <button
+            onclick="selectHall('Abdul Hamid Hall')">
+
+            Select Hall
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- HALL 2 -->
+
+<div class="hall-card">
+
+    <div class="hall-top">
+
+        <h3>
+            Bangabandhu Hall
+        </h3>
+
+        <p>
+            Male Students
+        </p>
+
+    </div>
+
+    <div class="hall-body">
+
+        <div class="hall-info">
+
+            <div class="info">
+
+                <small>
+                    Rooms
+                </small>
+
+                <strong>
+                    100
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Available Seats
+                </small>
+
+                <strong>
+                    35
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Monthly Fee
+                </small>
+
+                <strong>
+                    ৳2,700
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Location
+                </small>
+
+                <strong>
+                    Campus East
+                </strong>
+
+            </div>
+
+        </div>
+
+        <button
+            onclick="selectHall('Bangabandhu Hall')">
+
+            Select Hall
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- HALL 3 -->
+
+<div class="hall-card">
+
+    <div class="hall-top">
+
+        <h3>
+            Sheikh Hasina Hall
+        </h3>
+
+        <p>
+            Female Students
+        </p>
+
+    </div>
+
+    <div class="hall-body">
+
+        <div class="hall-info">
+
+            <div class="info">
+
+                <small>
+                    Rooms
+                </small>
+
+                <strong>
+                    110
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Available Seats
+                </small>
+
+                <strong>
+                    51
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Monthly Fee
+                </small>
+
+                <strong>
+                    ৳2,500
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Location
+                </small>
+
+                <strong>
+                    Campus South
+                </strong>
+
+            </div>
+
+        </div>
+
+        <button
+            onclick="selectHall('Sheikh Hasina Hall')">
+
+            Select Hall
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- HALL 4 -->
+
+<div class="hall-card">
+
+    <div class="hall-top">
+
+        <h3>
+            Central Student Hall
+        </h3>
+
+        <p>
+            Male Students
+        </p>
+
+    </div>
+
+    <div class="hall-body">
+
+        <div class="hall-info">
+
+            <div class="info">
+
+                <small>
+                    Rooms
+                </small>
+
+                <strong>
+                    80
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Available Seats
+                </small>
+
+                <strong>
+                    27
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Monthly Fee
+                </small>
+
+                <strong>
+                    ৳2,300
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Location
+                </small>
+
+                <strong>
+                    Campus West
+                </strong>
+
+            </div>
+
+        </div>
+
+        <button
+            onclick="selectHall('Central Student Hall')">
+
+            Select Hall
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- HALL 5 -->
+
+<div class="hall-card">
+
+    <div class="hall-top">
+
+        <h3>
+            International Hall
+        </h3>
+
+        <p>
+            International Students
+        </p>
+
+    </div>
+
+    <div class="hall-body">
+
+        <div class="hall-info">
+
+            <div class="info">
+
+                <small>
+                    Rooms
+                </small>
+
+                <strong>
+                    60
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Available Seats
+                </small>
+
+                <strong>
+                    29
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Monthly Fee
+                </small>
+
+                <strong>
+                    ৳3,500
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Location
+                </small>
+
+                <strong>
+                    Campus Central
+                </strong>
+
+            </div>
+
+        </div>
+
+        <button
+            onclick="selectHall('International Hall')">
+
+            Select Hall
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- HALL 6 -->
+
+<div class="hall-card">
+
+    <div class="hall-top">
+
+        <h3>
+            Graduate Hall
+        </h3>
+
+        <p>
+            Graduate Students
+        </p>
+
+    </div>
+
+    <div class="hall-body">
+
+        <div class="hall-info">
+
+            <div class="info">
+
+                <small>
+                    Rooms
+                </small>
+
+                <strong>
+                    50
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Available Seats
+                </small>
+
+                <strong>
+                    18
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Monthly Fee
+                </small>
+
+                <strong>
+                    ৳3,000
+                </strong>
+
+            </div>
+
+            <div class="info">
+
+                <small>
+                    Location
+                </small>
+
+                <strong>
+                    Campus South
+                </strong>
+
+            </div>
+
+        </div>
+
+        <button
+            onclick="selectHall('Graduate Hall')">
+
+            Select Hall
+
+        </button>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     HALL REGISTRATION
+========================= -->
+
+<div class="card"
+     id="hallRegistration">
+
+<h2>
+    📝 Hall Registration
+</h2>
+
+
+<form id="hallForm">
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Student Name
+</label>
+
+<input
+    type="text"
+    id="hallName"
+    placeholder="Enter Student Name"
+    required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Student ID
+</label>
+
+<input
+    type="text"
+    id="hallId"
+    placeholder="Enter Student ID"
+    required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Department
+</label>
+
+<select
+    id="department"
+    required>
+
+<option value="">
+Select Department
+</option>
+
+<option>
+CSE
+</option>
+
+<option>
+SWE
+</option>
+
+<option>
+EEE
+</option>
+
+<option>
+BBA
+</option>
+
+<option>
+English
+</option>
+
+<option>
+Law
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Semester
+</label>
+
+<select
+    id="semester"
+    required>
+
+<option value="">
+Select Semester
+</option>
+
+<option>
+1st Semester
+</option>
+
+<option>
+2nd Semester
+</option>
+
+<option>
+3rd Semester
+</option>
+
+<option>
+4th Semester
+</option>
+
+<option>
+5th Semester
+</option>
+
+<option>
+6th Semester
+</option>
+
+<option>
+7th Semester
+</option>
+
+<option>
+8th Semester
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Hall
+</label>
+
+<select
+    id="hallType"
+    required>
+
+<option value="">
+Select Hall
+</option>
+
+<option>
+Abdul Hamid Hall
+</option>
+
+<option>
+Bangabandhu Hall
+</option>
+
+<option>
+Sheikh Hasina Hall
+</option>
+
+<option>
+Central Student Hall
+</option>
+
+<option>
+International Hall
+</option>
+
+<option>
+Graduate Hall
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Preferred Room
+</label>
+
+<input
+    type="text"
+    id="roomNo"
+    placeholder="Example: 101">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Phone Number
+</label>
+
+<input
+    type="tel"
+    id="hallPhone"
+    placeholder="01XXXXXXXXX"
+    required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Room Type
+</label>
+
+<select
+    id="roomType">
+
+<option>
+Single
+</option>
+
+<option>
+Double
+</option>
+
+<option>
+Triple
+</option>
+
+<option>
+Four Seater
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+Reason for Hall Application
+</label>
+
+<textarea
+    id="hallReason"
+    rows="4"
+    placeholder="Write your reason..."></textarea>
+
+</div>
+
+
+<div class="full">
+
+<button
+    type="submit">
+
+    📝 Submit Hall Application
+
+</button>
+
+</div>
+
+
+</div>
+
+</form>
+
+
+<div
+    id="hallMsg"
+    class="message success-message">
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     APPLICATION STATUS
+========================= -->
+
+<div class="card">
+
+<h2>
+    📋 My Hall Application
+</h2>
+
+
+<div
+    id="applicationResult"
+    class="application-box">
+
+    <p>
+        No application submitted yet.
+    </p>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     ROOM SEARCH
+========================= -->
+
+<div class="card">
+
+<h2>
+    🛏️ Room Availability
+</h2>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Select Hall
+</label>
+
+<select id="searchHall">
+
+<option value="">
+All Halls
+</option>
+
+<option>
+Abdul Hamid Hall
+</option>
+
+<option>
+Bangabandhu Hall
+</option>
+
+<option>
+Sheikh Hasina Hall
+</option>
+
+<option>
+Central Student Hall
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Room Type
+</label>
+
+<select id="searchRoomType">
+
+<option value="">
+All Types
+</option>
+
+<option>
+Single
+</option>
+
+<option>
+Double
+</option>
+
+<option>
+Triple
+</option>
+
+<option>
+Four Seater
+</option>
+
+</select>
+
+</div>
+
+
+<div class="full">
+
+<button
+    onclick="searchRooms()">
+
+    🔍 Search Rooms
+
+</button>
+
+</div>
+
+
+</div>
+
+
+<br>
+
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Room
+</th>
+
+<th>
+Hall
+</th>
+
+<th>
+Floor
+</th>
+
+<th>
+Type
+</th>
+
+<th>
+Capacity
+</th>
+
+<th>
+Available
+</th>
+
+<th>
+Status
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+    id="roomTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     MY HALL INFORMATION
+========================= -->
+
+<div class="card">
+
+<h2>
+    👤 My Hall Information
+</h2>
+
+
+<div class="application-box">
+
+
+<div class="application-row">
+
+<strong>
+Student Name
+</strong>
+
+<span id="myName">
+Not Assigned
+</span>
+
+</div>
+
+
+<div class="application-row">
+
+<strong>
+Student ID
+</strong>
+
+<span id="myStudentId">
+Not Assigned
+</span>
+
+</div>
+
+
+<div class="application-row">
+
+<strong>
+Hall
+</strong>
+
+<span id="myHall">
+Not Assigned
+</span>
+
+</div>
+
+
+<div class="application-row">
+
+<strong>
+Room
+</strong>
+
+<span id="myRoom">
+Not Assigned
+</span>
+
+</div>
+
+
+<div class="application-row">
+
+<strong>
+Seat
+</strong>
+
+<span id="mySeat">
+Not Assigned
+</span>
+
+</div>
+
+
+<div class="application-row">
+
+<strong>
+Monthly Fee
+</strong>
+
+<span id="myFee">
+Not Assigned
+</span>
+
+</div>
+
+
+<div class="application-row">
+
+<strong>
+Payment Status
+</strong>
+
+<span
+    id="myPaymentStatus"
+    class="badge pending">
+
+    Unpaid
+
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     TRANSPORT
+========================= -->
+
+<div class="card">
+
+<h2>
+    🚌 Transport Registration
+</h2>
+
+
+<form id="transportForm">
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Student Name
+</label>
+
+<input
+    type="text"
+    id="transportName"
+    placeholder="Student Name"
+    required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Student ID
+</label>
+
+<input
+    type="text"
+    id="transportId"
+    placeholder="Student ID"
+    required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Select Route
+</label>
+
+<select
+    id="route"
+    required>
+
+<option value="">
+Select Route
+</option>
+
+<option>
+Dhaka Route
+</option>
+
+<option>
+Gazipur Route
+</option>
+
+<option>
+Uttara Route
+</option>
+
+<option>
+Mirpur Route
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Pickup Point
+</label>
+
+<input
+    type="text"
+    id="pickup"
+    placeholder="Enter Pickup Point"
+    required>
+
+</div>
+
+
+<div class="full">
+
+<button
+    type="submit">
+
+    🚌 Register Transport
+
+</button>
+
+</div>
+
+
+</div>
+
+</form>
+
+
+<div
+    id="transportMsg"
+    class="message success-message">
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     PAYMENT
+========================= -->
+
+<div class="card">
+
+<h2>
+    💳 Hall & Transport Payment
+</h2>
+
+
+<div class="payment-grid">
+
+
+<div class="payment-box">
+
+<h3>
+Current Payment
+</h3>
+
+
+<div class="amount">
+
+৳2500
+
+</div>
+
+
+<p>
+Monthly Hall Fee
+</p>
+
+
+<br>
+
+
+<input
+    type="text"
+    id="payName"
+    placeholder="Student Name">
+
+
+<input
+    type="number"
+    id="amount"
+    value="2500"
+    placeholder="Amount">
+
+
+<select
+    id="paymentMethod">
+
+<option value="">
+Select Payment Method
+</option>
+
+<option>
+bKash
+</option>
+
+<option>
+Nagad
+</option>
+
+<option>
+Rocket
+</option>
+
+<option>
+Bank Transfer
+</option>
+
+</select>
+
+
+<br><br>
+
+
+<button
+    class="success-btn"
+    onclick="makePayment()">
+
+    💳 Pay Now
+
+</button>
+
+
+<div
+    id="paymentMsg"
+    class="message success-message">
+</div>
+
+
+</div>
+
+
+<div class="payment-box">
+
+<h3>
+Payment History
+</h3>
+
+<br>
+
+
+<div class="application-row">
+
+<span>
+August 2026
+</span>
+
+<span
+    class="badge paid">
+
+Paid
+
+</span>
+
+</div>
+
+
+<div class="application-row">
+
+<span>
+July 2026
+</span>
+
+<span
+    class="badge paid">
+
+Paid
+
+</span>
+
+</div>
+
+
+<div class="application-row">
+
+<span>
+June 2026
+</span>
+
+<span
+    class="badge paid">
+
+Paid
+
+</span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<div class="footer">
+
+© 2026 Smart Student Zone |
+Hall & Transport Management System
+
+</div>
+
+
+</div>
+
+
+<!-- NOTIFICATION -->
+
+<div
+    id="notification"
+    class="notification">
+
+</div>
+
+
 <script>
 
-function registerHall(){
+/* =========================
+   ROOM DATA
+========================= */
 
-    document.getElementById("hallMsg").innerHTML =
-    "✅ Hall Registration Successful";
+const rooms = [
+
+{
+    room:"101",
+    hall:"Abdul Hamid Hall",
+    floor:"1st",
+    type:"Four Seater",
+    capacity:4,
+    available:2
+},
+
+{
+    room:"102",
+    hall:"Abdul Hamid Hall",
+    floor:"1st",
+    type:"Four Seater",
+    capacity:4,
+    available:0
+},
+
+{
+    room:"203",
+    hall:"Bangabandhu Hall",
+    floor:"2nd",
+    type:"Double",
+    capacity:2,
+    available:1
+},
+
+{
+    room:"204",
+    hall:"Bangabandhu Hall",
+    floor:"2nd",
+    type:"Single",
+    capacity:1,
+    available:1
+},
+
+{
+    room:"305",
+    hall:"Sheikh Hasina Hall",
+    floor:"3rd",
+    type:"Triple",
+    capacity:3,
+    available:0
+},
+
+{
+    room:"402",
+    hall:"Central Student Hall",
+    floor:"4th",
+    type:"Single",
+    capacity:1,
+    available:1
 }
 
-function registerTransport(){
+];
 
-    document.getElementById("transportMsg").innerHTML =
-    "✅ Transport Registration Successful";
+
+/* =========================
+   NOTIFICATION
+========================= */
+
+function showNotification(message){
+
+    const box =
+        document.getElementById(
+            "notification"
+        );
+
+    box.innerHTML = message;
+
+    box.style.display = "block";
+
+    setTimeout(function(){
+
+        box.style.display = "none";
+
+    },3000);
+
 }
+
+
+/* =========================
+   SELECT HALL
+========================= */
+
+function selectHall(hall){
+
+    document.getElementById(
+        "hallType"
+    ).value = hall;
+
+    document.getElementById(
+        "hallRegistration"
+    ).scrollIntoView({
+
+        behavior:"smooth"
+
+    });
+
+    showNotification(
+        "🏠 " + hall + " selected."
+    );
+
+}
+
+
+/* =========================
+   HALL FORM
+========================= */
+
+document
+.getElementById("hallForm")
+.addEventListener(
+    "submit",
+    function(e){
+
+        e.preventDefault();
+
+
+        const data = {
+
+            name:
+            document.getElementById(
+                "hallName"
+            ).value,
+
+            id:
+            document.getElementById(
+                "hallId"
+            ).value,
+
+            department:
+            document.getElementById(
+                "department"
+            ).value,
+
+            semester:
+            document.getElementById(
+                "semester"
+            ).value,
+
+            hall:
+            document.getElementById(
+                "hallType"
+            ).value,
+
+            room:
+            document.getElementById(
+                "roomNo"
+            ).value || "Any Available Room",
+
+            phone:
+            document.getElementById(
+                "hallPhone"
+            ).value,
+
+            roomType:
+            document.getElementById(
+                "roomType"
+            ).value,
+
+            reason:
+            document.getElementById(
+                "hallReason"
+            ).value,
+
+            status:"Pending",
+
+            date:
+            new Date()
+            .toLocaleDateString()
+
+        };
+
+
+        localStorage.setItem(
+            "hallApplication",
+            JSON.stringify(data)
+        );
+
+
+        showHallMessage(
+            "✅ Hall Application Submitted Successfully!"
+        );
+
+
+        document.getElementById(
+            "dashboardStatus"
+        ).innerText = "Pending";
+
+
+        displayApplication();
+
+
+        showNotification(
+            "✅ Hall application submitted!"
+        );
+
+    }
+);
+
+
+/* =========================
+   HALL MESSAGE
+========================= */
+
+function showHallMessage(text){
+
+    const msg =
+        document.getElementById(
+            "hallMsg"
+        );
+
+    msg.innerHTML = text;
+
+    msg.style.display = "block";
+
+}
+
+
+/* =========================
+   DISPLAY APPLICATION
+========================= */
+
+function displayApplication(){
+
+    const data =
+        JSON.parse(
+            localStorage.getItem(
+                "hallApplication"
+            )
+        );
+
+
+    if(!data){
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "applicationResult"
+    ).innerHTML = `
+
+        <div class="application-row">
+
+            <strong>
+                Student Name
+            </strong>
+
+            <span>
+                ${data.name}
+            </span>
+
+        </div>
+
+        <div class="application-row">
+
+            <strong>
+                Student ID
+            </strong>
+
+            <span>
+                ${data.id}
+            </span>
+
+        </div>
+
+        <div class="application-row">
+
+            <strong>
+                Department
+            </strong>
+
+            <span>
+                ${data.department}
+            </span>
+
+        </div>
+
+        <div class="application-row">
+
+            <strong>
+                Hall
+            </strong>
+
+            <span>
+                ${data.hall}
+            </span>
+
+        </div>
+
+        <div class="application-row">
+
+            <strong>
+                Room
+            </strong>
+
+            <span>
+                ${data.room}
+            </span>
+
+        </div>
+
+        <div class="application-row">
+
+            <strong>
+                Application Date
+            </strong>
+
+            <span>
+                ${data.date}
+            </span>
+
+        </div>
+
+        <div class="application-row">
+
+            <strong>
+                Status
+            </strong>
+
+            <span class="badge pending">
+
+                ${data.status}
+
+            </span>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "myName"
+    ).innerText = data.name;
+
+
+    document.getElementById(
+        "myStudentId"
+    ).innerText = data.id;
+
+
+    document.getElementById(
+        "myHall"
+    ).innerText = data.hall;
+
+
+    document.getElementById(
+        "myRoom"
+    ).innerText = data.room;
+
+}
+
+
+/* =========================
+   ROOM SEARCH
+========================= */
+
+function searchRooms(){
+
+    const hall =
+        document.getElementById(
+            "searchHall"
+        ).value;
+
+
+    const type =
+        document.getElementById(
+            "searchRoomType"
+        ).value;
+
+
+    const table =
+        document.getElementById(
+            "roomTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    const filtered =
+        rooms.filter(function(room){
+
+            return (
+                (!hall ||
+                room.hall === hall)
+
+                &&
+
+                (!type ||
+                room.type === type)
+            );
+
+        });
+
+
+    if(filtered.length === 0){
+
+        table.innerHTML = `
+
+        <tr>
+
+            <td colspan="7"
+                style="text-align:center">
+
+                No room found.
+
+            </td>
+
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    filtered.forEach(function(room){
+
+        const status =
+            room.available > 0
+            ? "Available"
+            : "Occupied";
+
+
+        const statusClass =
+            room.available > 0
+            ? "available"
+            : "occupied";
+
+
+        table.innerHTML += `
+
+        <tr>
+
+            <td>
+                ${room.room}
+            </td>
+
+            <td>
+                ${room.hall}
+            </td>
+
+            <td>
+                ${room.floor}
+            </td>
+
+            <td>
+                ${room.type}
+            </td>
+
+            <td>
+                ${room.capacity}
+            </td>
+
+            <td>
+                ${room.available}
+            </td>
+
+            <td>
+
+                <span
+                    class="badge ${statusClass}">
+
+                    ${status}
+
+                </span>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+
+/* =========================
+   TRANSPORT
+========================= */
+
+document
+.getElementById("transportForm")
+.addEventListener(
+    "submit",
+    function(e){
+
+        e.preventDefault();
+
+
+        const transport = {
+
+            name:
+            document.getElementById(
+                "transportName"
+            ).value,
+
+            id:
+            document.getElementById(
+                "transportId"
+            ).value,
+
+            route:
+            document.getElementById(
+                "route"
+            ).value,
+
+            pickup:
+            document.getElementById(
+                "pickup"
+            ).value
+
+        };
+
+
+        localStorage.setItem(
+            "transportRegistration",
+            JSON.stringify(transport)
+        );
+
+
+        const msg =
+            document.getElementById(
+                "transportMsg"
+            );
+
+
+        msg.innerHTML =
+            "✅ Transport Registration Successful!";
+
+
+        msg.style.display =
+            "block";
+
+
+        showNotification(
+            "🚌 Transport registration successful!"
+        );
+
+    }
+);
+
+
+/* =========================
+   PAYMENT
+========================= */
 
 function makePayment(){
 
-    let amount =
-    document.getElementById("amount").value;
+    const name =
+        document.getElementById(
+            "payName"
+        ).value;
 
-    document.getElementById("paymentMsg").innerHTML =
-    "✅ Payment Successful. Amount: ৳" + amount;
+
+    const amount =
+        document.getElementById(
+            "amount"
+        ).value;
+
+
+    const method =
+        document.getElementById(
+            "paymentMethod"
+        ).value;
+
+
+    if(
+        name === "" ||
+        amount === "" ||
+        method === ""
+    ){
+
+        const msg =
+            document.getElementById(
+                "paymentMsg"
+            );
+
+
+        msg.className =
+            "message error-message";
+
+
+        msg.innerHTML =
+            "⚠️ Please complete all payment fields.";
+
+
+        msg.style.display =
+            "block";
+
+
+        return;
+
+    }
+
+
+    const payment = {
+
+        name:name,
+
+        amount:amount,
+
+        method:method,
+
+        date:
+        new Date()
+        .toLocaleString(),
+
+        status:"Paid"
+
+    };
+
+
+    localStorage.setItem(
+        "lastPayment",
+        JSON.stringify(payment)
+    );
+
+
+    const msg =
+        document.getElementById(
+            "paymentMsg"
+        );
+
+
+    msg.className =
+        "message success-message";
+
+
+    msg.innerHTML =
+        "✅ Payment Successful! Amount: ৳"
+        + amount
+        + " via "
+        + method;
+
+
+    msg.style.display =
+        "block";
+
+
+    document.getElementById(
+        "myPaymentStatus"
+    ).innerText = "Paid";
+
+
+    document.getElementById(
+        "myPaymentStatus"
+    ).className =
+        "badge paid";
+
+
+    showNotification(
+        "💳 Payment Successful!"
+    );
+
 }
+
+
+/* =========================
+   PAGE LOAD
+========================= */
+
+window.onload = function(){
+
+    searchRooms();
+
+    displayApplication();
+
+};
 
 </script>
 
+
 </body>
+
 </html>
