@@ -1,137 +1,3819 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>Teacher Portal</title>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Smart Student Zone - Teacher Portal</title>
+
 
 <style>
-body{
- margin:0;
- font-family:Arial;
- display:flex;
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
+
+:root{
+
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+
+    --dark:#0f172a;
+    --sidebar:#111827;
+
+    --bg:#f1f5f9;
+    --card:#ffffff;
+
+    --text:#1e293b;
+    --muted:#64748b;
+
+    --border:#e2e8f0;
+
+}
+
+body{
+
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
 
 .sidebar{
- width:250px;
- background:#2d3436;
- color:white;
- height:100vh;
- padding:20px;
+
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    width:250px;
+
+    height:100vh;
+
+    background:
+    linear-gradient(
+        180deg,
+        #111827,
+        #1e293b
+    );
+
+    color:white;
+
+    padding:20px 15px;
+
+    z-index:1000;
+
+    overflow-y:auto;
+
 }
 
-.sidebar button{
- width:100%;
- padding:10px;
- margin:5px 0;
- border:none;
- background:#353b48;
- color:white;
+.logo{
+
+    padding:10px;
+
+    text-align:center;
+
+    margin-bottom:25px;
+
 }
+
+.logo h2{
+
+    font-size:21px;
+
+}
+
+.logo p{
+
+    color:#94a3b8;
+
+    font-size:12px;
+
+    margin-top:5px;
+
+}
+
+
+.menu{
+
+    list-style:none;
+
+}
+
+.menu li{
+
+    margin:5px 0;
+
+}
+
+.menu button{
+
+    width:100%;
+
+    border:none;
+
+    background:transparent;
+
+    color:#cbd5e1;
+
+    padding:13px;
+
+    text-align:left;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    transition:.2s;
+
+}
+
+.menu button:hover,
+.menu button.active{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+
+.logout-btn{
+
+    margin-top:20px !important;
+
+    background:#dc2626 !important;
+
+    color:white !important;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
 
 .main{
- flex:1;
- padding:20px;
+
+    margin-left:250px;
+
+    padding:25px;
+
 }
 
-.card{
- background:white;
- padding:20px;
- border-radius:10px;
- box-shadow:0 0 10px rgba(0,0,0,.1);
- margin-bottom:20px;
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar{
+
+    background:var(--card);
+
+    padding:15px 20px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 2px 8px
+    rgba(0,0,0,.05);
+
 }
+
+.topbar-left h1{
+
+    font-size:23px;
+
+}
+
+.topbar-left p{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-top:4px;
+
+}
+
+.top-actions{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.icon-btn{
+
+    border:none;
+
+    background:#eff6ff;
+
+    padding:10px 13px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+}
+
+
+/* =====================================================
+   PAGE SECTIONS
+===================================================== */
+
+.page{
+
+    display:none;
+
+}
+
+.page.active{
+
+    display:block;
+
+}
+
+
+/* =====================================================
+   DASHBOARD CARDS
+===================================================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:18px;
+
+    margin-bottom:25px;
+
+}
+
+.stat-card{
+
+    background:var(--card);
+
+    padding:20px;
+
+    border-radius:12px;
+
+    box-shadow:
+    0 2px 8px
+    rgba(0,0,0,.05);
+
+    border-left:
+    5px solid var(--primary);
+
+}
+
+.stat-card h3{
+
+    font-size:13px;
+
+    color:var(--muted);
+
+    margin-bottom:8px;
+
+}
+
+.stat-card .number{
+
+    font-size:28px;
+
+    font-weight:700;
+
+}
+
+.stat-card p{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-top:5px;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+
+    background:var(--card);
+
+    padding:22px;
+
+    border-radius:12px;
+
+    margin-bottom:22px;
+
+    box-shadow:
+    0 2px 8px
+    rgba(0,0,0,.05);
+
+}
+
+.card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.card-header h2{
+
+    font-size:19px;
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.btn{
+
+    border:none;
+
+    padding:10px 16px;
+
+    border-radius:7px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.2s;
+
+}
+
+.btn-primary{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+.btn-primary:hover{
+
+    background:var(--primary-dark);
+
+}
+
+.btn-success{
+
+    background:var(--success);
+
+    color:white;
+
+}
+
+.btn-danger{
+
+    background:var(--danger);
+
+    color:white;
+
+}
+
+.btn-warning{
+
+    background:var(--warning);
+
+    color:white;
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    margin-bottom:6px;
+
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:11px;
+
+    border:
+    1px solid var(--border);
+
+    border-radius:7px;
+
+    outline:none;
+
+    background:var(--card);
+
+    color:var(--text);
+
+}
+
+textarea{
+
+    resize:vertical;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:var(--primary);
+
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-wrapper{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th,
+td{
+
+    padding:12px;
+
+    border-bottom:
+    1px solid var(--border);
+
+    text-align:left;
+
+    font-size:13px;
+
+}
+
+th{
+
+    background:#f8fafc;
+
+    color:#475569;
+
+}
+
+.badge{
+
+    padding:5px 10px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+}
+
+.badge-green{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+}
+
+.badge-red{
+
+    background:#fee2e2;
+
+    color:#991b1b;
+
+}
+
+.badge-yellow{
+
+    background:#fef3c7;
+
+    color:#92400e;
+
+}
+
+.badge-blue{
+
+    background:#dbeafe;
+
+    color:#1e40af;
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-box{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:15px;
+
+}
+
+.search-box input{
+
+    flex:1;
+
+}
+
+
+/* =====================================================
+   ROUTINE
+===================================================== */
+
+.routine-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+}
+
+.routine-card{
+
+    border:
+    1px solid var(--border);
+
+    padding:18px;
+
+    border-radius:10px;
+
+}
+
+.routine-card h3{
+
+    color:var(--primary);
+
+    margin-bottom:10px;
+
+}
+
+.routine-card p{
+
+    margin:5px 0;
+
+    font-size:13px;
+
+}
+
+
+/* =====================================================
+   NOTICE
+===================================================== */
+
+.notice{
+
+    padding:15px;
+
+    border-left:
+    4px solid var(--primary);
+
+    background:#f8fafc;
+
+    border-radius:7px;
+
+    margin-bottom:12px;
+
+}
+
+.notice h3{
+
+    font-size:15px;
+
+    margin-bottom:5px;
+
+}
+
+.notice p{
+
+    font-size:13px;
+
+    color:var(--muted);
+
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.profile{
+
+    display:grid;
+
+    grid-template-columns:
+    150px 1fr;
+
+    gap:25px;
+
+    align-items:center;
+
+}
+
+.profile-avatar{
+
+    width:130px;
+
+    height:130px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:55px;
+
+    color:white;
+
+}
+
+.profile-info h2{
+
+    margin-bottom:8px;
+
+}
+
+.profile-info p{
+
+    color:var(--muted);
+
+    margin:5px 0;
+
+}
+
+
+/* =====================================================
+   PERFORMANCE
+===================================================== */
+
+.performance{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+}
+
+.performance-card{
+
+    border:
+    1px solid var(--border);
+
+    padding:18px;
+
+    border-radius:10px;
+
+}
+
+.progress{
+
+    height:8px;
+
+    background:#e2e8f0;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    margin-top:10px;
+
+}
+
+.progress-bar{
+
+    height:100%;
+
+    background:var(--primary);
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,.6);
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:2000;
+
+    padding:20px;
+
+}
+
+.modal-content{
+
+    background:var(--card);
+
+    width:100%;
+
+    max-width:600px;
+
+    border-radius:12px;
+
+    padding:25px;
+
+    max-height:90vh;
+
+    overflow:auto;
+
+}
+
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+
+}
+
+.close{
+
+    border:none;
+
+    background:none;
+
+    font-size:25px;
+
+    cursor:pointer;
+
+}
+
+
+/* =====================================================
+   NOTIFICATION
+===================================================== */
+
+.notification{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    background:#0f172a;
+
+    color:white;
+
+    padding:15px 20px;
+
+    border-radius:8px;
+
+    display:none;
+
+    z-index:3000;
+
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+body.dark{
+
+    --bg:#020617;
+
+    --card:#0f172a;
+
+    --text:#e2e8f0;
+
+    --muted:#94a3b8;
+
+    --border:#1e293b;
+
+}
+
+body.dark th{
+
+    background:#1e293b;
+
+    color:#e2e8f0;
+
+}
+
+body.dark .notice{
+
+    background:#1e293b;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:1100px){
+
+    .stats{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+    .routine-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .sidebar{
+
+        width:70px;
+
+        padding:15px 8px;
+
+    }
+
+    .logo h2{
+
+        font-size:0;
+
+    }
+
+    .logo h2:first-letter{
+
+        font-size:25px;
+
+    }
+
+    .logo p{
+
+        display:none;
+
+    }
+
+    .menu button{
+
+        text-align:center;
+
+        font-size:0;
+
+    }
+
+    .menu button::first-letter{
+
+        font-size:20px;
+
+    }
+
+    .main{
+
+        margin-left:70px;
+
+        padding:15px;
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .profile{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+
+    }
+
+    .profile-avatar{
+
+        margin:auto;
+
+    }
+
+    .performance{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    .stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .routine-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .topbar{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:12px;
+
+    }
+
+}
+
 </style>
 
 </head>
+
+
 <body>
+
+
+<!-- =====================================================
+     LOGIN CHECK
+===================================================== -->
 
 <script>
 
 if(
- localStorage.getItem("teacherLogin")
- !=="true"
+    localStorage.getItem("teacherLogin")
+    !== "true"
 ){
- location.href="teacher-login.html";
+
+    location.href =
+    "teacher-login.html";
+
 }
 
 </script>
 
-<div class="sidebar">
 
-<h2>Teacher Portal</h2>
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-<button>Dashboard</button>
+<aside class="sidebar">
 
-<button>Student Result</button>
 
-<button>Attendance</button>
+<div class="logo">
 
-<button>Assignments</button>
+    <h2>
+        👨‍🏫 Teacher Portal
+    </h2>
 
-<button onclick="logout()">
-Logout
-</button>
+    <p>
+        Smart Student Zone
+    </p>
 
 </div>
 
-<div class="main">
 
-<div class="card">
+<ul class="menu">
 
-<h1>👨‍🏫 Teacher Dashboard</h1>
+
+<li>
+
+<button
+    class="active"
+    onclick="showPage('dashboard',this)">
+
+    📊 Dashboard
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    onclick="showPage('students',this)">
+
+    👨‍🎓 Students
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    onclick="showPage('courses',this)">
+
+    📚 Courses
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    onclick="showPage('attendance',this)">
+
+    🕐 Attendance
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    onclick="showPage('assignments',this)">
+
+    📝 Assignments
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    onclick="showPage('results',this)">
+
+    📊 Results
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    onclick="showPage('routine',this)">
+
+    📅 Routine
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    onclick="showPage('notices',this)">
+
+    📢 Notices
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    onclick="showPage('profile',this)">
+
+    👤 Profile
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    onclick="toggleDarkMode()">
+
+    🌙 Dark Mode
+
+</button>
+
+</li>
+
+
+<li>
+
+<button
+    class="logout-btn"
+    onclick="logout()">
+
+    🚪 Logout
+
+</button>
+
+</li>
+
+
+</ul>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+<div class="topbar-left">
+
+<h1>
+    Teacher Academic Portal
+</h1>
 
 <p>
-Welcome to Teacher Portal
+    Manage students, attendance, assignments and results
 </p>
 
 </div>
 
-<div class="card">
 
-<h2>🎯 Add Student Marks</h2>
+<div class="top-actions">
 
-<input id="studentId"
-placeholder="Student ID">
+<button
+    class="icon-btn"
+    onclick="toggleDarkMode()">
 
-<input id="marks"
-placeholder="Marks">
+    🌙
 
-<button onclick="saveMarks()">
-Save Marks
+</button>
+
+
+<button
+    class="icon-btn"
+    onclick="showNotification('🔔 No new notifications')">
+
+    🔔
+
 </button>
 
 </div>
 
 </div>
 
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section
+    id="dashboard"
+    class="page active">
+
+
+<div class="stats">
+
+
+<div class="stat-card">
+
+<h3>
+    Total Students
+</h3>
+
+<div
+    class="number">
+
+125
+
+</div>
+
+<p>
+    Active students
+</p>
+
+</div>
+
+
+<div class="stat-card">
+
+<h3>
+    Total Courses
+</h3>
+
+<div
+    class="number">
+
+4
+
+</div>
+
+<p>
+    Assigned courses
+</p>
+
+</div>
+
+
+<div class="stat-card">
+
+<h3>
+    Assignments
+</h3>
+
+<div
+    class="number"
+    id="assignmentCount">
+
+12
+
+</div>
+
+<p>
+    Active assignments
+</p>
+
+</div>
+
+
+<div class="stat-card">
+
+<h3>
+    Attendance
+</h3>
+
+<div
+    class="number">
+
+86%
+
+</div>
+
+<p>
+    Average attendance
+</p>
+
+</div>
+
+
+</div>
+
+
+<!-- TODAY'S CLASSES -->
+
+<div class="card">
+
+<div class="card-header">
+
+<h2>
+    📅 Today's Classes
+</h2>
+
+<span
+    class="badge badge-blue">
+
+    Monday
+
+</span>
+
+</div>
+
+
+<div class="routine-grid">
+
+
+<div class="routine-card">
+
+<h3>
+    09:00 AM
+</h3>
+
+<p>
+    <strong>
+        CSE101
+    </strong>
+</p>
+
+<p>
+    Programming Fundamentals
+</p>
+
+<p>
+    🏫 Room 502
+</p>
+
+</div>
+
+
+<div class="routine-card">
+
+<h3>
+    11:00 AM
+</h3>
+
+<p>
+    <strong>
+        CSE205
+    </strong>
+</p>
+
+<p>
+    Database Systems
+</p>
+
+<p>
+    🏫 Room 304
+</p>
+
+</div>
+
+
+<div class="routine-card">
+
+<h3>
+    02:00 PM
+</h3>
+
+<p>
+    <strong>
+        CSE301
+    </strong>
+</p>
+
+<p>
+    Software Engineering
+</p>
+
+<p>
+    🏫 Room 401
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- RECENT ACTIVITIES -->
+
+<div class="card">
+
+<div class="card-header">
+
+<h2>
+    🔔 Recent Activities
+</h2>
+
+</div>
+
+
+<div class="notice">
+
+<h3>
+    ✅ Marks Updated
+</h3>
+
+<p>
+    Student marks were successfully updated.
+</p>
+
+</div>
+
+
+<div class="notice">
+
+<h3>
+    📝 Assignment Submitted
+</h3>
+
+<p>
+    8 new assignment submissions are waiting for review.
+</p>
+
+</div>
+
+
+<div class="notice">
+
+<h3>
+    ⚠️ Attendance Alert
+</h3>
+
+<p>
+    5 students have attendance below 60%.
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     STUDENTS
+===================================================== -->
+
+<section
+    id="students"
+    class="page">
+
+
+<div class="card">
+
+<div class="card-header">
+
+<h2>
+    👨‍🎓 Student Management
+</h2>
+
+</div>
+
+
+<div class="search-box">
+
+<input
+    type="text"
+    id="studentSearch"
+    placeholder="Search Student ID or Name..."
+    onkeyup="searchStudents()">
+
+</div>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+ID
+</th>
+
+<th>
+Student
+</th>
+
+<th>
+Department
+</th>
+
+<th>
+Semester
+</th>
+
+<th>
+Attendance
+</th>
+
+<th>
+Status
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="studentTable">
+
+
+<tr>
+
+<td>
+221-15-101
+</td>
+
+<td>
+Rahim Ahmed
+</td>
+
+<td>
+CSE
+</td>
+
+<td>
+5th
+</td>
+
+<td>
+88%
+</td>
+
+<td>
+
+<span
+    class="badge badge-green">
+
+Active
+
+</span>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+221-15-102
+</td>
+
+<td>
+Karim Hasan
+</td>
+
+<td>
+CSE
+</td>
+
+<td>
+5th
+</td>
+
+<td>
+72%
+</td>
+
+<td>
+
+<span
+    class="badge badge-green">
+
+Active
+
+</span>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+221-15-103
+</td>
+
+<td>
+Nusrat Jahan
+</td>
+
+<td>
+SWE
+</td>
+
+<td>
+4th
+</td>
+
+<td>
+91%
+</td>
+
+<td>
+
+<span
+    class="badge badge-green">
+
+Active
+
+</span>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+221-15-104
+</td>
+
+<td>
+Sakib Khan
+</td>
+
+<td>
+CSE
+</td>
+
+<td>
+5th
+</td>
+
+<td>
+55%
+</td>
+
+<td>
+
+<span
+    class="badge badge-red">
+
+Low Attendance
+
+</span>
+
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     COURSES
+===================================================== -->
+
+<section
+    id="courses"
+    class="page">
+
+
+<div class="card">
+
+<div class="card-header">
+
+<h2>
+    📚 My Courses
+</h2>
+
+</div>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Course Code
+</th>
+
+<th>
+Course Name
+</th>
+
+<th>
+Students
+</th>
+
+<th>
+Credits
+</th>
+
+<th>
+Schedule
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>
+CSE101
+</td>
+
+<td>
+Programming Fundamentals
+</td>
+
+<td>
+40
+</td>
+
+<td>
+3
+</td>
+
+<td>
+Sun 09:00 AM
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+CSE205
+</td>
+
+<td>
+Database Systems
+</td>
+
+<td>
+35
+</td>
+
+<td>
+3
+</td>
+
+<td>
+Mon 11:00 AM
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+CSE301
+</td>
+
+<td>
+Software Engineering
+</td>
+
+<td>
+30
+</td>
+
+<td>
+3
+</td>
+
+<td>
+Tue 02:00 PM
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+CSE305
+</td>
+
+<td>
+Web Engineering
+</td>
+
+<td>
+20
+</td>
+
+<td>
+3
+</td>
+
+<td>
+Wed 10:00 AM
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ATTENDANCE
+===================================================== -->
+
+<section
+    id="attendance"
+    class="page">
+
+
+<div class="card">
+
+<div class="card-header">
+
+<h2>
+    🕐 Attendance Management
+</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Course
+</label>
+
+<select
+    id="attendanceCourse">
+
+<option>
+CSE101
+</option>
+
+<option>
+CSE205
+</option>
+
+<option>
+CSE301
+</option>
+
+<option>
+CSE305
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Date
+</label>
+
+<input
+    type="date"
+    id="attendanceDate">
+
+</div>
+
+
+</div>
+
+
+<br>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Student ID
+</th>
+
+<th>
+Student Name
+</th>
+
+<th>
+Status
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>
+221-15-101
+</td>
+
+<td>
+Rahim Ahmed
+</td>
+
+<td>
+
+<select
+    class="attendance-select">
+
+<option>
+Present
+</option>
+
+<option>
+Absent
+</option>
+
+</select>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+221-15-102
+</td>
+
+<td>
+Karim Hasan
+</td>
+
+<td>
+
+<select
+    class="attendance-select">
+
+<option>
+Present
+</option>
+
+<option>
+Absent
+</option>
+
+</select>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+221-15-103
+</td>
+
+<td>
+Nusrat Jahan
+</td>
+
+<td>
+
+<select
+    class="attendance-select">
+
+<option>
+Present
+</option>
+
+<option>
+Absent
+</option>
+
+</select>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+221-15-104
+</td>
+
+<td>
+Sakib Khan
+</td>
+
+<td>
+
+<select
+    class="attendance-select">
+
+<option>
+Present
+</option>
+
+<option>
+Absent
+</option>
+
+</select>
+
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<br>
+
+
+<button
+    class="btn btn-success"
+    onclick="saveAttendance()">
+
+    💾 Save Attendance
+
+</button>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ASSIGNMENTS
+===================================================== -->
+
+<section
+    id="assignments"
+    class="page">
+
+
+<div class="card">
+
+<div class="card-header">
+
+<h2>
+    📝 Assignment Management
+</h2>
+
+<button
+    class="btn btn-primary"
+    onclick="openAssignmentModal()">
+
+    + Create Assignment
+
+</button>
+
+</div>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Title
+</th>
+
+<th>
+Course
+</th>
+
+<th>
+Deadline
+</th>
+
+<th>
+Marks
+</th>
+
+<th>
+Status
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="assignmentTable">
+
+
+<tr>
+
+<td>
+Database ERD
+</td>
+
+<td>
+CSE205
+</td>
+
+<td>
+25 Aug 2026
+</td>
+
+<td>
+20
+</td>
+
+<td>
+
+<span
+    class="badge badge-blue">
+
+Active
+
+</span>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Java OOP Project
+</td>
+
+<td>
+CSE301
+</td>
+
+<td>
+30 Aug 2026
+</td>
+
+<td>
+30
+</td>
+
+<td>
+
+<span
+    class="badge badge-blue">
+
+Active
+
+</span>
+
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     RESULTS
+===================================================== -->
+
+<section
+    id="results"
+    class="page">
+
+
+<div class="card">
+
+<div class="card-header">
+
+<h2>
+    📊 Student Result Management
+</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+Student ID
+</label>
+
+<input
+    type="text"
+    id="studentId"
+    placeholder="Example: 221-15-101">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Course
+</label>
+
+<select
+    id="resultCourse">
+
+<option>
+CSE101
+</option>
+
+<option>
+CSE205
+</option>
+
+<option>
+CSE301
+</option>
+
+<option>
+CSE305
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Midterm Marks
+</label>
+
+<input
+    type="number"
+    id="midMarks"
+    min="0"
+    max="30">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Final Marks
+</label>
+
+<input
+    type="number"
+    id="finalMarks"
+    min="0"
+    max="50">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Assignment Marks
+</label>
+
+<input
+    type="number"
+    id="assignmentMarks"
+    min="0"
+    max="20">
+
+</div>
+
+
+</div>
+
+
+<br>
+
+
+<button
+    class="btn btn-primary"
+    onclick="saveMarks()">
+
+    💾 Save Result
+
+</button>
+
+
+<div
+    id="resultMessage"
+    style="margin-top:15px;">
+
+</div>
+
+
+</div>
+
+
+<div class="card">
+
+<h2 style="margin-bottom:15px;">
+
+    📋 Saved Results
+
+</h2>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Student ID
+</th>
+
+<th>
+Course
+</th>
+
+<th>
+Total
+</th>
+
+<th>
+Grade
+</th>
+
+<th>
+Grade Point
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="resultTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     ROUTINE
+===================================================== -->
+
+<section
+    id="routine"
+    class="page">
+
+
+<div class="card">
+
+<div class="card-header">
+
+<h2>
+    📅 Teaching Routine
+</h2>
+
+</div>
+
+
+<div class="routine-grid">
+
+
+<div class="routine-card">
+
+<h3>
+Sunday
+</h3>
+
+<p>
+09:00 AM - CSE101
+</p>
+
+<p>
+Room 502
+</p>
+
+<p>
+40 Students
+</p>
+
+</div>
+
+
+<div class="routine-card">
+
+<h3>
+Monday
+</h3>
+
+<p>
+11:00 AM - CSE205
+</p>
+
+<p>
+Room 304
+</p>
+
+<p>
+35 Students
+</p>
+
+</div>
+
+
+<div class="routine-card">
+
+<h3>
+Tuesday
+</h3>
+
+<p>
+02:00 PM - CSE301
+</p>
+
+<p>
+Room 401
+</p>
+
+<p>
+30 Students
+</p>
+
+</div>
+
+
+<div class="routine-card">
+
+<h3>
+Wednesday
+</h3>
+
+<p>
+10:00 AM - CSE305
+</p>
+
+<p>
+Room 405
+</p>
+
+<p>
+20 Students
+</p>
+
+</div>
+
+
+<div class="routine-card">
+
+<h3>
+Thursday
+</h3>
+
+<p>
+09:00 AM - CSE101
+</p>
+
+<p>
+Room 502
+</p>
+
+<p>
+40 Students
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     NOTICES
+===================================================== -->
+
+<section
+    id="notices"
+    class="page">
+
+
+<div class="card">
+
+<div class="card-header">
+
+<h2>
+    📢 Notice Board
+</h2>
+
+</div>
+
+
+<div class="notice">
+
+<h3>
+    Midterm Result Submission
+</h3>
+
+<p>
+Teachers should submit midterm results before the deadline.
+</p>
+
+<small>
+Admin • 17 Aug 2026
+</small>
+
+</div>
+
+
+<div class="notice">
+
+<h3>
+    Assignment Review
+</h3>
+
+<p>
+Please review pending student assignments.
+</p>
+
+<small>
+Admin • 16 Aug 2026
+</small>
+
+</div>
+
+
+<div class="notice">
+
+<h3>
+    Attendance Warning
+</h3>
+
+<p>
+Students below 60% attendance should be notified.
+</p>
+
+<small>
+Academic Office • 15 Aug 2026
+</small>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PROFILE
+===================================================== -->
+
+<section
+    id="profile"
+    class="page">
+
+
+<div class="card">
+
+
+<div class="profile">
+
+
+<div class="profile-avatar">
+
+👨‍🏫
+
+</div>
+
+
+<div class="profile-info">
+
+<h2>
+    Teacher Profile
+</h2>
+
+<p>
+<strong>
+Name:
+</strong>
+
+Dr. Teacher Name
+
+</p>
+
+<p>
+<strong>
+Department:
+</strong>
+
+Computer Science & Engineering
+
+</p>
+
+<p>
+<strong>
+Employee ID:
+</strong>
+
+T-2026-001
+
+</p>
+
+<p>
+<strong>
+Email:
+</strong>
+
+teacher@university.edu
+
+</p>
+
+<p>
+<strong>
+Courses:
+</strong>
+
+4 Active Courses
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div class="card">
+
+<h2 style="margin-bottom:15px;">
+
+📈 Student Performance Overview
+
+</h2>
+
+
+<div class="performance">
+
+
+<div class="performance-card">
+
+<h3>
+Attendance
+</h3>
+
+<strong>
+86%
+</strong>
+
+<div class="progress">
+
+<div
+    class="progress-bar"
+    style="width:86%;">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="performance-card">
+
+<h3>
+Average Result
+</h3>
+
+<strong>
+78%
+</strong>
+
+<div class="progress">
+
+<div
+    class="progress-bar"
+    style="width:78%;">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="performance-card">
+
+<h3>
+Assignment Completion
+</h3>
+
+<strong>
+92%
+</strong>
+
+<div class="progress">
+
+<div
+    class="progress-bar"
+    style="width:92%;">
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     ASSIGNMENT MODAL
+===================================================== -->
+
+<div
+    class="modal"
+    id="assignmentModal">
+
+
+<div class="modal-content">
+
+
+<div class="modal-header">
+
+<h2>
+    Create Assignment
+</h2>
+
+<button
+    class="close"
+    onclick="closeAssignmentModal()">
+
+    ×
+
+</button>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Assignment Title
+</label>
+
+<input
+    type="text"
+    id="assignmentTitle"
+    placeholder="Assignment title">
+
+</div>
+
+
+<br>
+
+
+<div class="form-group">
+
+<label>
+Course
+</label>
+
+<select
+    id="assignmentCourse">
+
+<option>
+CSE101
+</option>
+
+<option>
+CSE205
+</option>
+
+<option>
+CSE301
+</option>
+
+<option>
+CSE305
+</option>
+
+</select>
+
+</div>
+
+
+<br>
+
+
+<div class="form-group">
+
+<label>
+Deadline
+</label>
+
+<input
+    type="date"
+    id="assignmentDeadline">
+
+</div>
+
+
+<br>
+
+
+<div class="form-group">
+
+<label>
+Marks
+</label>
+
+<input
+    type="number"
+    id="assignmentMarksInput"
+    placeholder="Total marks">
+
+</div>
+
+
+<br>
+
+
+<div class="form-group">
+
+<label>
+Description
+</label>
+
+<textarea
+    id="assignmentDescription"
+    rows="4"
+    placeholder="Assignment description">
+
+</textarea>
+
+</div>
+
+
+<br>
+
+
+<button
+    class="btn btn-primary"
+    onclick="createAssignment()">
+
+    Publish Assignment
+
+</button>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     NOTIFICATION
+===================================================== -->
+
+<div
+    id="notification"
+    class="notification">
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script>
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+function showPage(
+    pageId,
+    button
+){
+
+    document
+    .querySelectorAll(".page")
+    .forEach(function(page){
+
+        page.classList.remove(
+            "active"
+        );
+
+    });
+
+
+    document
+    .getElementById(pageId)
+    .classList.add("active");
+
+
+    document
+    .querySelectorAll(".menu button")
+    .forEach(function(btn){
+
+        btn.classList.remove(
+            "active"
+        );
+
+    });
+
+
+    if(button){
+
+        button.classList.add(
+            "active"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+function toggleDarkMode(){
+
+    document.body
+    .classList.toggle("dark");
+
+
+    localStorage.setItem(
+        "teacherDarkMode",
+
+        document.body
+        .classList.contains("dark")
+    );
+
+}
+
+
+if(
+    localStorage.getItem(
+        "teacherDarkMode"
+    ) === "true"
+){
+
+    document.body
+    .classList.add("dark");
+
+}
+
+
+/* =====================================================
+   NOTIFICATION
+===================================================== */
+
+function showNotification(
+    message
+){
+
+    const notification =
+        document.getElementById(
+            "notification"
+        );
+
+
+    notification.innerHTML =
+        message;
+
+
+    notification.style.display =
+        "block";
+
+
+    setTimeout(function(){
+
+        notification.style.display =
+            "none";
+
+    },3000);
+
+}
+
+
+/* =====================================================
+   STUDENT SEARCH
+===================================================== */
+
+function searchStudents(){
+
+    const search =
+        document
+        .getElementById(
+            "studentSearch"
+        )
+        .value
+        .toLowerCase();
+
+
+    const rows =
+        document
+        .querySelectorAll(
+            "#studentTable tr"
+        );
+
+
+    rows.forEach(function(row){
+
+        const text =
+            row.innerText
+            .toLowerCase();
+
+
+        row.style.display =
+            text.includes(search)
+            ? ""
+            : "none";
+
+    });
+
+}
+
+
+/* =====================================================
+   ATTENDANCE
+===================================================== */
+
+function saveAttendance(){
+
+    const course =
+        document
+        .getElementById(
+            "attendanceCourse"
+        )
+        .value;
+
+
+    const date =
+        document
+        .getElementById(
+            "attendanceDate"
+        )
+        .value;
+
+
+    if(!date){
+
+        showNotification(
+            "⚠️ Please select attendance date."
+        );
+
+        return;
+
+    }
+
+
+    const attendance = [];
+
+
+    document
+    .querySelectorAll(
+        ".attendance-select"
+    )
+    .forEach(function(select){
+
+        attendance.push(
+            select.value
+        );
+
+    });
+
+
+    const data = {
+
+        course:course,
+
+        date:date,
+
+        attendance:attendance
+
+    };
+
+
+    localStorage.setItem(
+        "attendance_" +
+        course +
+        "_" +
+        date,
+
+        JSON.stringify(data)
+    );
+
+
+    showNotification(
+        "✅ Attendance saved successfully!"
+    );
+
+}
+
+
+/* =====================================================
+   ASSIGNMENT MODAL
+===================================================== */
+
+function openAssignmentModal(){
+
+    document
+    .getElementById(
+        "assignmentModal"
+    )
+    .style.display =
+        "flex";
+
+}
+
+
+function closeAssignmentModal(){
+
+    document
+    .getElementById(
+        "assignmentModal"
+    )
+    .style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   CREATE ASSIGNMENT
+===================================================== */
+
+function createAssignment(){
+
+    const title =
+        document
+        .getElementById(
+            "assignmentTitle"
+        )
+        .value;
+
+
+    const course =
+        document
+        .getElementById(
+            "assignmentCourse"
+        )
+        .value;
+
+
+    const deadline =
+        document
+        .getElementById(
+            "assignmentDeadline"
+        )
+        .value;
+
+
+    const marks =
+        document
+        .getElementById(
+            "assignmentMarksInput"
+        )
+        .value;
+
+
+    const description =
+        document
+        .getElementById(
+            "assignmentDescription"
+        )
+        .value;
+
+
+    if(
+        title === "" ||
+        deadline === "" ||
+        marks === ""
+    ){
+
+        showNotification(
+            "⚠️ Please fill required fields."
+        );
+
+        return;
+
+    }
+
+
+    const assignment = {
+
+        title:title,
+
+        course:course,
+
+        deadline:deadline,
+
+        marks:marks,
+
+        description:description,
+
+        status:"Active"
+
+    };
+
+
+    let assignments =
+        JSON.parse(
+            localStorage.getItem(
+                "teacherAssignments"
+            )
+        ) || [];
+
+
+    assignments.push(
+        assignment
+    );
+
+
+    localStorage.setItem(
+        "teacherAssignments",
+        JSON.stringify(assignments)
+    );
+
+
+    addAssignmentToTable(
+        assignment
+    );
+
+
+    document
+    .getElementById(
+        "assignmentCount"
+    )
+    .innerText =
+        assignments.length + 12;
+
+
+    closeAssignmentModal();
+
+
+    showNotification(
+        "📝 Assignment published successfully!"
+    );
+
+
+}
+
+
+/* =====================================================
+   ADD ASSIGNMENT TABLE
+===================================================== */
+
+function addAssignmentToTable(
+    assignment
+){
+
+    const table =
+        document.getElementById(
+            "assignmentTable"
+        );
+
+
+    table.innerHTML += `
+
+    <tr>
+
+        <td>
+            ${assignment.title}
+        </td>
+
+        <td>
+            ${assignment.course}
+        </td>
+
+        <td>
+            ${assignment.deadline}
+        </td>
+
+        <td>
+            ${assignment.marks}
+        </td>
+
+        <td>
+
+            <span
+                class="badge badge-blue">
+
+                ${assignment.status}
+
+            </span>
+
+        </td>
+
+    </tr>
+
+    `;
+
+}
+
+
+/* =====================================================
+   LOAD ASSIGNMENTS
+===================================================== */
+
+function loadAssignments(){
+
+    const assignments =
+        JSON.parse(
+            localStorage.getItem(
+                "teacherAssignments"
+            )
+        ) || [];
+
+
+    assignments.forEach(
+        function(assignment){
+
+            addAssignmentToTable(
+                assignment
+            );
+
+        }
+    );
+
+
+}
+
+
+/* =====================================================
+   RESULT / MARKS
+===================================================== */
 
 function saveMarks(){
 
- let id=
- document.getElementById("studentId").value;
+    const studentId =
+        document
+        .getElementById(
+            "studentId"
+        )
+        .value;
 
- let marks=
- document.getElementById("marks").value;
 
- localStorage.setItem(
- "marks_"+id,
- marks
- );
+    const course =
+        document
+        .getElementById(
+            "resultCourse"
+        )
+        .value;
 
- alert("Marks Saved");
+
+    const mid =
+        Number(
+            document
+            .getElementById(
+                "midMarks"
+            )
+            .value
+        ) || 0;
+
+
+    const final =
+        Number(
+            document
+            .getElementById(
+                "finalMarks"
+            )
+            .value
+        ) || 0;
+
+
+    const assignment =
+        Number(
+            document
+            .getElementById(
+                "assignmentMarks"
+            )
+            .value
+        ) || 0;
+
+
+    if(studentId === ""){
+
+        showNotification(
+            "⚠️ Enter Student ID."
+        );
+
+        return;
+
+    }
+
+
+    const total =
+        mid +
+        final +
+        assignment;
+
+
+    let grade =
+        "F";
+
+
+    let point =
+        0.00;
+
+
+    if(total >= 80){
+
+        grade="A+";
+        point=4.00;
+
+    }
+
+    else if(total >= 75){
+
+        grade="A";
+        point=3.75;
+
+    }
+
+    else if(total >= 70){
+
+        grade="A-";
+        point=3.50;
+
+    }
+
+    else if(total >= 65){
+
+        grade="B+";
+        point=3.25;
+
+    }
+
+    else if(total >= 60){
+
+        grade="B";
+        point=3.00;
+
+    }
+
+    else if(total >= 55){
+
+        grade="B-";
+        point=2.75;
+
+    }
+
+    else if(total >= 50){
+
+        grade="C+";
+        point=2.50;
+
+    }
+
+    else if(total >= 45){
+
+        grade="C";
+        point=2.25;
+
+    }
+
+    else if(total >= 40){
+
+        grade="D";
+        point=2.00;
+
+    }
+
+
+    const result = {
+
+        studentId:
+            studentId,
+
+        course:
+            course,
+
+        mid:
+            mid,
+
+        final:
+            final,
+
+        assignment:
+            assignment,
+
+        total:
+            total,
+
+        grade:
+            grade,
+
+        point:
+            point
+
+    };
+
+
+    let results =
+        JSON.parse(
+            localStorage.getItem(
+                "teacherResults"
+            )
+        ) || [];
+
+
+    results.push(result);
+
+
+    localStorage.setItem(
+        "teacherResults",
+        JSON.stringify(results)
+    );
+
+
+    displayResult(
+        result
+    );
+
+
+    showNotification(
+        "✅ Result saved successfully!"
+    );
+
 }
+
+
+/* =====================================================
+   DISPLAY RESULT
+===================================================== */
+
+function displayResult(
+    result
+){
+
+    const table =
+        document.getElementById(
+            "resultTable"
+        );
+
+
+    table.innerHTML += `
+
+    <tr>
+
+        <td>
+            ${result.studentId}
+        </td>
+
+        <td>
+            ${result.course}
+        </td>
+
+        <td>
+            ${result.total}
+        </td>
+
+        <td>
+
+            <span
+                class="badge badge-blue">
+
+                ${result.grade}
+
+            </span>
+
+        </td>
+
+        <td>
+            ${result.point}
+        </td>
+
+    </tr>
+
+    `;
+
+}
+
+
+/* =====================================================
+   LOAD RESULTS
+===================================================== */
+
+function loadResults(){
+
+    const results =
+        JSON.parse(
+            localStorage.getItem(
+                "teacherResults"
+            )
+        ) || [];
+
+
+    results.forEach(
+        function(result){
+
+            displayResult(
+                result
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
 
 function logout(){
 
- localStorage.removeItem(
- "teacherLogin"
- );
+    localStorage.removeItem(
+        "teacherLogin"
+    );
 
- location.href=
- "teacher-login.html";
+
+    location.href =
+        "teacher-login.html";
+
 }
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+window.onload =
+function(){
+
+    loadAssignments();
+
+    loadResults();
+
+};
 
 </script>
 
+
 </body>
+
 </html>
